@@ -1,0 +1,11 @@
+#!/bin/sh
+
+ulimit -t 600
+
+for name in `cat SMT-COMP-2023`; do
+  echo $name
+  scrambled=`mktemp /tmp/smt-comp-XXXXXXXX.smt2`
+  ./scrambler -seed 758161884 <$name >$scrambled
+  /usr/bin/time -f "%e" ./ostrich/ostrich +cea +quiet -ceaBackend=catra $scrambled
+  rm $scrambled
+done >SMT-COMP-2023_catra-scrambled 2>&1

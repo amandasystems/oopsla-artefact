@@ -1,0 +1,8 @@
+#!/bin/bash
+
+HERE=`dirname $0`
+input="$1"
+output="$2/$(basename $1 smt2)out"
+
+"$HERE"/../ostrich +cea +quiet -ceaBackend=catra "$input" >"$output" 2>/dev/null
+cat "$output"

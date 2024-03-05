@@ -1,0 +1,8 @@
+.vagrant
+.DS_Store
+ostrich-catra-starexec.zip
+oopsla-catra.ova
+**/target/**
+.vscode
+.bloop
+/ostrich-catra/ostrich/project/

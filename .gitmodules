@@ -1,0 +1,10 @@
+[submodule "incremental-parikh-images"]
+	path = incremental-parikh-images
+	url = git@github.com:amandasystems/incremental-parikh-images.git
+[submodule "catra"]
+	path = catra
+	url = git@github.com:amandasystems/catra.git
+[submodule "ostrich-cea"]
+	path = ostrich-cea
+	url = git@github.com:uuverifiers/ostrich.git
+	branch = cea-catra
