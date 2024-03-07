@@ -6,7 +6,7 @@ This artefact contains everything needed to reproduce the version of Catra that 
 
 - the source code for the evaluated versions of Catra and Ostrich
 - compiled standalone uber-JARs for both of them
-- all supported software to run them
+- all supporting software to run them
 - the results from SMT-COMP used to generate the virtual portfolio solver, fetched from the StarExec servers and provided for convenience
 - Jupyter notebooks to analyse the results and produce the figures shown in the paper, with supporting software
 - the raw execution logs from our experiments with Catra and Ostrich
@@ -15,6 +15,7 @@ This artefact contains everything needed to reproduce the version of Catra that 
 - our Parikh image constraint instances used to evaluate Catra and nuXmv (available as `parikh-plus.zip` or at `~/parikh-plus/` in the VM.
 - relevant parts of the SMT-COMP benchmark set
 - scripts to execute Ostrich-Catra on SMT-COMP on the StarExec cluster
+- scripts to execute Catra itself (using the baseline backend) on the StarExec cluster
 
 **Note**: the VM contains nuXmv, available under a proprietary license for non-commercial use. We believe that evaluating the artefact constitutes non-commercial, research use but nonetheless advise discretion.
 
@@ -30,7 +31,7 @@ Note that since all our software is written in Scala and compiled to portable Ub
 
 After assembly (which is already done in the VM), Catra can be executed through the convenience script found in `~/catra/bin/catra`. There is also a `--help` command available to show options and their default values. Note that a directory containing benchmarks is a valid input, so `~/catra/bin/catra solve-satisfy basket` will run all benchmarks in `basket` (until the heat death of the universe as far as we have been able to tell). Running with a timeout (`--timeout 3000` for a 3-second timeout) is very, very recommended.
 
-The full set of Parikh image computation benchmarks is available in `~/deduped-benchmarks`, but also distributed separately as `deduped-benchmarks` (the folder).
+The full set of Parikh image computation benchmarks is available in `~/deduped-benchmarks`, but also distributed separately as `catra/deduped-benchmarks` (the folder). The subset used for the 120s experiments is available (copied) as `catra/120s-experiments.d`.
 
 The user name and password to the virtual machine are "vagrant".
 
@@ -67,7 +68,7 @@ The PC\* benchmarks are executed using a dedicated runner scala script (in `catr
 
 Please note that the baseline backend of Catra is very RAM-hungry and difficult to execute reliably on a reused JVM. The best approach is usually to only run one instance at a time.
 
-To run the experiments do,
+To run _all_ the experiments do,
 
 ```
 $ cd catra
@@ -79,9 +80,11 @@ Logs are written to `catra/logs`. File names will not immediately correspond to 
 
 Note that `oopsla-experiments.sh` is intended to be human-readable.
 
+Catra itself can also be used for benchmarking. A StarExec solver that runs the baseline backend is available in `catra-benches-starexec` (though not in the VM).
+
 #### Running the SMT-COMP benchmarks on Ostrich-Catra
 
-The runner script for the SMT-COMP benchmarks is in `~/ostrich-catra` of the VM. To execute it, simply `cd ~/ostrich-catra` and run `./run-ostrich-catra-scrambled`. The scrambler is used to scramble the order of the SMT-COMP instances and can be omitted if needed.
+The runner script for the SMT-COMP benchmarks is in `~/ostrich-catra` of the VM. To execute it, simply `cd ~/ostrich-catra` and run `./run-ostrich-catra-scrambled`. The scrambler is used to scramble the SMT-COMP instances and can be omitted if needed.
 
 The directory `ostrich-catra-starexec` contains everything needed to run an experiment on StarExec. You can zip it using the corresponding `Makefile` inside the directory and upload the resulting file as a solver to StarExec, or use `ostrich-catra-starexec/bin/starexec_run_def` to run the experiments on your local machine.
 
