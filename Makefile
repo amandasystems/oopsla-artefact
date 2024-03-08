@@ -5,4 +5,4 @@ oopsla-catra.ova:
 	vboxmanage export -o oopsla-catra.ova $(shell vboxmanage list vms | grep oopsla-artefact | sed -r 's/.*\{(.*)\}/\1/')
 
 oopsla24-artefact-catra.zip: catra incremental-parikh-images/experiments Makefile Vagrantfile ostrich-catra ostrich-catra-starexec Artefact\ Overview.md SMT-COMP oopsla-catra.ova LICENSE.txt README.txt
-	zip -r $^ -x "**/.venv/*" -x "**/__pycache__" .vscode $@ 
+	zip -r $^ -x "**/.venv/*" -x "**/__pycache__" .vscode "Artefact Overview.md" $@ 
