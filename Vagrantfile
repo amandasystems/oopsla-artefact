@@ -17,6 +17,10 @@ Vagrant.configure("2") do |config|
   #
   config.vm.provider "virtualbox" do |vb|
       vb.memory = "8192" # You might want to increase this!
+      vb.customize [ "modifyvm", :id, "--uart1", "off" ]
+      vb.customize [ "modifyvm", :id, "--uart2", "off" ]
+      vb.customize [ "modifyvm", :id, "--uart3", "off" ]
+      vb.customize [ "modifyvm", :id, "--uart4", "off" ]
   end
 
   config.vm.provision "shell", inline: <<-SHELL
