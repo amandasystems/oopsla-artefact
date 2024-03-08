@@ -4,5 +4,5 @@ oopsla-catra.ova:
 	vagrant halt
 	vboxmanage export -o oopsla-catra.ova $(shell vboxmanage list vms | grep oopsla-artefact | sed -r 's/.*\{(.*)\}/\1/')
 
-oopsla24-artefact-catra.zip: catra incremental-parikh-images/experiments Makefile Vagrantfile ostrich-catra ostrich-catra-starexec Artefact\ Overview.md SMT-COMP oopsla-catra.ova LICENSE.txt README.txt
-	zip -r $^ -x "**/.venv/*" -x "**/__pycache__" .vscode "Artefact Overview.md" $@ 
+oopsla24-artefact-catra.zip: catra incremental-parikh-images/experiments Makefile Vagrantfile ostrich-catra ostrich-catra-starexec Artefact\ Overview.md SMT-COMP oopsla-catra.ova LICENSE.txt README.txt catra-benches-starexec ostrich-catra-starexec example.par
+	zip -r $@ $^ "Artefact Overview.md" -x "**/.venv/*" -x "**/__pycache__" -x .vscode -x .DS_Store -x .git
