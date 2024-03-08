@@ -1,0 +1,7 @@
+Catra and Ostrich are available under the BSD license:
+see catra/LICENSE and ostrich-catra/ostrich/LICENSE respectively. 
+
+All other assets available under CC-BY-SA 4.0.
+
+Please note that the VM includes nuXmv,
+available under a proprietary license.
